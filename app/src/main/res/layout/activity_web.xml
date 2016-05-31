@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/view_toolbar"/>
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/progressbar"
+        style="@style/NumberProgressBar_Beauty_Red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:progress_text_size="0sp"
+        app:progress_unreached_bar_height="3dp"
+        app:progress_reached_bar_height="3dp"/>
+    <WebView
+        android:id="@+id/web_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

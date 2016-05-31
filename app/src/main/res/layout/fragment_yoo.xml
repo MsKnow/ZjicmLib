@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:id="@+id/card_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_x"
+        android:padding="15dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="账号(一般为学号)"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:hint="密码(一般为身份证后六位)"
+                android:imeOptions="actionDone"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/bt_login"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="登陆"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/card_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/bg_card_x"
+        android:padding="15dp">
+        <TextView
+            android:id="@+id/name_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未登录"/>
+        <TextView
+            android:id="@+id/my_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_me_boo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp"/>
+
+
+</LinearLayout>

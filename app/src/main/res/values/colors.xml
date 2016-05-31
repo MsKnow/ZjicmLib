@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorYan">#607d8b</color>
+    <color name="colorPrimary">#E43F3F</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorRed">#e51c23</color>
+    <color name="colorYellow">#ffeb3b</color>
+    <color name="colorBlue">#5677fc</color>
+    <color name="colorOrange">#ff9800</color>
+    <color name="colorWrite">#ffffff</color>
+    <color name="colorGray">#eeeeee</color>
+    <color name="color_refresh_1">@color/colorRed</color>
+    <color name="color_refresh_2">@color/colorYellow</color>
+    <color name="color_refresh_3">@color/colorBlue</color>
+
+    <color name="iron">#CCCCCC</color>
+
+</resources>
