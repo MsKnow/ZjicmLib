@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_card_x"
+        android:background="@color/colorPrimary"
         android:padding="15dp">
 
         <android.support.design.widget.TextInputLayout
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:background="@drawable/bg_card_x"
+        android:background="@color/colorPrimary"
         android:padding="15dp">
         <TextView
             android:id="@+id/name_me"
