@@ -53,6 +53,7 @@ public class YooFragment extends Fragment implements YooView{
     @Bind(R.id.card_me)View meCard;
     @Bind(R.id.name_me)TextView myNameText;
     @Bind(R.id.my_tip)TextView myTip;
+    @Bind(R.id.warning)TextView myWarning;
 
     @Bind(R.id.list_me_boo)RecyclerView myBooList;
     MyBooListAdapter adapter ;
@@ -243,6 +244,7 @@ public class YooFragment extends Fragment implements YooView{
         myBooList.setVisibility(View.VISIBLE);
         myNameText.setTextColor(Color.RED);
         myNameText.setText(yoo.getNickname());
+        myWarning.setText(yoo.getWarning());
     }
     public void onLoginSuccess(){
         cardOnline();

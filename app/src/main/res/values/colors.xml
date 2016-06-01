@@ -3,7 +3,8 @@
     <color name="colorYan">#607d8b</color>
     <color name="colorPrimary">#E43F3F</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="colorMeiRed">#FF4081</color>
     <color name="colorRed">#e51c23</color>
     <color name="colorYellow">#ffeb3b</color>
     <color name="colorBlue">#5677fc</color>

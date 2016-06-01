@@ -1,5 +1,6 @@
 package com.know.zjicmlib.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -194,7 +195,11 @@ public class MainActivity extends ToolbarActivity {
         switch (item.getItemId()){
             case R.id.action_share:
                 //SharedPreUtil.getSharedPre().edit().clear().commit();
-                APP.mDb.delete(Notice.class);
+                //APP.mDb.delete(Notice.class);
+
+                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
+
                 break;
         }
         switch (item.getItemId()){

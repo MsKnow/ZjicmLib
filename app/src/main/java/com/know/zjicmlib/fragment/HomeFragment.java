@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
                             notices.addAll(notices1);
                             saveNotices(notices1);
                             adapter.notifyDataSetChanged();
-                        }
+                        }, Throwable::printStackTrace
                 );
 
     }

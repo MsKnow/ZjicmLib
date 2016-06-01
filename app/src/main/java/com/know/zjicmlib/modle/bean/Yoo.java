@@ -14,7 +14,7 @@ public class Yoo {
     @Column("id")String id;
     String password;
     @Column("name")String name;
-    String nickname;
+    @Column("nickname")String nickname;
     @Ignore
     String start;
     @Ignore
@@ -23,8 +23,27 @@ public class Yoo {
     String major;
     @Ignore
     String born;
-    @Ignore
+    @Column("sex")
     String sex;
+    @Column("warning")String warning;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getWarning() {
+        return warning;
+    }
+
+    public void setWarning(String warning) {
+        this.warning = warning;
+    }
+
+    @Column("imgUrl")String imgUrl;
 
 
 

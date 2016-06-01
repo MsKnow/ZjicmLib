@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -11,11 +13,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/colorPrimary"
-        android:padding="15dp">
+        android:padding="15dp"
+        >
 
         <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorWrite">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/et_id"
                 android:layout_width="match_parent"
@@ -26,8 +31,11 @@
 
 
         <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorWrite"
+            >
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
@@ -40,8 +48,9 @@
 
         <Button
             android:id="@+id/bt_login"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_gravity="end"
             android:text="登陆"/>
     </LinearLayout>
@@ -54,15 +63,26 @@
         android:gravity="center_horizontal"
         android:background="@color/colorPrimary"
         android:padding="15dp">
+        <com.know.zjicmlib.myview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/logo"
+            app:border_color="@color/white"
+            app:border_width="2dp"/>
         <TextView
             android:id="@+id/name_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未登录"/>
         <TextView
+            android:id="@+id/warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
             android:id="@+id/my_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

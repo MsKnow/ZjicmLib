@@ -10,6 +10,7 @@ import com.know.zjicmlib.util.ToastUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -56,12 +57,17 @@ public class YooModelImp implements YooModel{
             //return null;
         }else{
             Document doc = Jsoup.parse(html);
+
+            Element div = doc.getElementsByClass("mylib_msg").first();
+            Elements as = div.getElementsByTag("a");
+            String overSoon = as.get(0).text();
+            String over = as.get(1).text();
+            System.out.println(over+"================================="+overSoon);
+
             Elements tds = doc.getElementsByTag("TD");
-
-
-            for(int i = 0;i<tds.size();i++){
+            /*for(int i = 0;i<tds.size();i++){
                 System.out.println(i+": "+tds.get(i).text());
-            }
+            }*/
 
             Yoo yoo = new Yoo();
             String userName = tds.get(1).text().split("：")[1];
@@ -71,6 +77,7 @@ public class YooModelImp implements YooModel{
             yoo.setName(userName);
             yoo.setNickname(yoo.getName());
 
+            yoo.setWarning(over+" "+overSoon);
             //storeYoo(yoo);
 
             return yoo;
@@ -86,14 +93,14 @@ public class YooModelImp implements YooModel{
         String html = body2str(body);
 
         Document doc = Jsoup.parse(html);
-        Elements tds = doc.getElementsByClass("whitetext");
 
+        Elements tds = doc.getElementsByClass("whitetext");
         Elements inputs = doc.getElementsByTag("input");
 
-        for(int i = 0;i<tds.size();i++){
+        /*for(int i = 0;i<tds.size();i++){
             System.out.println(i+tds.get(i).text());
         }
-        System.out.println(tds.size());
+        System.out.println(tds.size());*/
 
         if(tds.size()==0){
             System.out.println("人丑就要多读书");
