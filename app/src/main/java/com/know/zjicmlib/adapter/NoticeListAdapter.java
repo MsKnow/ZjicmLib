@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class NoticeListAdapter extends ListAdapter<Notice> {
 
-    public NoticeListAdapter(List<Notice> data, int layoutId) {
-        super(data, layoutId);
+    public NoticeListAdapter(List<Notice> data) {
+        super(data, R.layout.item_notice);
     }
 
     @Override

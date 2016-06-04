@@ -27,7 +27,7 @@ public abstract class ToolbarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
         }
 
     }

@@ -11,8 +11,9 @@
         android:title="退出"
         />
     <item
-        android:id="@+id/action_share"
+        android:id="@+id/action_search"
         android:title="分享"
+        android:icon="@drawable/ic_search_api_material"
         app:showAsAction="ifRoom"/>
 
 </menu>

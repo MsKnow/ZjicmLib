@@ -16,7 +16,7 @@
         android:text="Hello World!"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     <android.support.v4.view.ViewPager
-        android:background="@color/colorWrite"
+        android:background="@color/colorGray"
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,10 +37,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <-->
-
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </android.support.design.widget.CoordinatorLayout>

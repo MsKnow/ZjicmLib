@@ -1,6 +1,7 @@
 package com.know.zjicmlib.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,9 +41,9 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
 
     OneBoosModel oneBoosModel;
 
-    //@Bind(R.id.toolbar)Toolbar toolbar;
+    @Bind(R.id.toolbar)Toolbar toolbar;
     @Bind(R.id.tab_one)TabLayout oneTab;
-
+    @Bind(R.id.CoolToolbar)CollapsingToolbarLayout collapsingToolbarLayout;
     @Bind(R.id.img_boo_one)ImageView booImage;
     @Bind(R.id.tv_boo_one)TextView booText;
     TextView summaryText;
@@ -58,7 +59,7 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
 
     private void initPager(){
         //setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        //getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -101,6 +102,8 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
         Boo boo = (Boo) getIntent().getSerializableExtra("boo");
         String oneBooStr = boo.getName()+"\n\n"+boo.getAuthor()+"\n\n"+boo.getId();
         booText.setText(oneBooStr);
+        collapsingToolbarLayout.setTitle(boo.getName());/////////
+
 
         Log.e("booCheck", boo.getCheck());//item.php?marc_no=0000467162
 
@@ -124,9 +127,8 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(douban -> {
 
-
-
                     Glide.with(this).load(douban.getImage())
+                            .placeholder(R.drawable.ic_wait_24dp)
                             .into(booImage);
                     Log.e("summary", douban.getSummary());
                     summaryText.setText(douban.getSummary());adapter.notifyDataSetChanged();

@@ -60,9 +60,7 @@ public class SearchModel  {
             System.out.println("没有找到你要的书");
             //Toast.makeText(getApplicationContext(), "没有找到...", Toast.LENGTH_LONG).show();
 
-        }
-
-        else{
+        }else{
             Elements lis   = ol.getElementsByClass("book_list_info");
             boos  = new ArrayList<>();
             for(int i=0;i<lis.size();i++){
@@ -139,9 +137,6 @@ public class SearchModel  {
 
 
         }
-
-
-
 
 
         return boos;

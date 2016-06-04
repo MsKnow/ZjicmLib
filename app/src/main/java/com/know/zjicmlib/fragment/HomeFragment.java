@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
         notices.clear();
         notices.addAll(APP.mDb.query(query));
 
-        adapter = new NoticeListAdapter(notices,R.layout.item_notice);
+        adapter = new NoticeListAdapter(notices);
         adapter.setOnItemClickListener(position -> {
 
             Intent intent = new Intent(this.getActivity(), WebActivity.class);

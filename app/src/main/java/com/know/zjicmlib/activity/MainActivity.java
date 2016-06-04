@@ -36,7 +36,7 @@ public class MainActivity extends ToolbarActivity {
     //@Bind(R.id.tabs) TabLayout tab ;
     @Bind(R.id.viewpager) ViewPager viewPager;
     //@Bind(R.id.bottom_bar)BottomNavigationBar bottomBar;
-    @Bind(R.id.bottomBar)BottomBar bottomBar;
+    BottomBar bottomBar;
     YooFragment yooFragment;
 
     @Override
@@ -65,7 +65,7 @@ public class MainActivity extends ToolbarActivity {
         ButterKnife.bind(this);
 
         bottomBar = BottomBar.attach(this,savedInstanceState);
-
+        //bottomBar.setMaxFixedTabs(2);
         initBottomBar();
 
         List<String> tabList = new ArrayList<>();
@@ -190,10 +190,39 @@ public class MainActivity extends ToolbarActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        switch (viewPager.getCurrentItem()){
+
+            case 0:
+                menu.findItem(R.id.action_search).setVisible(false);
+                menu.findItem(R.id.action_logout).setVisible(false);
+                menu.findItem(R.id.action_about).setVisible(true);
+                invalidateOptionsMenu();
+                break;
+            case 1:
+                menu.findItem(R.id.action_search).setVisible(true);
+                menu.findItem(R.id.action_logout).setVisible(false);
+                menu.findItem(R.id.action_about).setVisible(true);
+                invalidateOptionsMenu();
+                break;
+            case 2:
+                menu.findItem(R.id.action_search).setVisible(false);
+                menu.findItem(R.id.action_logout).setVisible(true);
+                menu.findItem(R.id.action_about).setVisible(true);
+                invalidateOptionsMenu();
+                break;
+
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.action_share:
+            case R.id.action_search:
                 //SharedPreUtil.getSharedPre().edit().clear().commit();
                 //APP.mDb.delete(Notice.class);
 
