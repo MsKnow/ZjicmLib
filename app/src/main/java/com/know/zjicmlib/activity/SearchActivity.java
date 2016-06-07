@@ -15,6 +15,7 @@ import com.know.zjicmlib.adapter.SearchListAdapterA;
 import com.know.zjicmlib.modle.SearchModel;
 import com.know.zjicmlib.modle.bean.Boo;
 import com.know.zjicmlib.util.ToastUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class SearchActivity extends AppCompatActivity{
     @Bind(R.id.rv_search)RecyclerView searchBooList;
     @Bind(R.id.swipe_search)SwipeRefreshLayout refreshLayout;
     private int page = 1;
-    private String bookName = "hehehe";
+    private String bookName = "";
     List<Boo> boos;
     SearchListAdapterA adapter;
 
@@ -43,8 +44,14 @@ public class SearchActivity extends AppCompatActivity{
 
         ButterKnife.bind(this);
 
+        bookName = getIntent().getStringExtra("word");
+
+        Log.e("booknameeeeeeeeeeeeee", bookName);
+
         initBoosList();
         initRefresh();
+
+
 
         searchView.setSubmitButtonEnabled(true);
 
@@ -55,9 +62,9 @@ public class SearchActivity extends AppCompatActivity{
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                bookName = query;
+                //bookName = query;
 
-                Log.e("boooooooooookname搜索",bookName);
+                Log.e("boooooooooookname搜索", bookName);
 
                 page = 1;
 
@@ -65,7 +72,7 @@ public class SearchActivity extends AppCompatActivity{
                     ToastUtil.tShort("不能为空");
 
                 } else {
-                    showLoading();
+
                     getBoos();
                 }
 
@@ -77,15 +84,25 @@ public class SearchActivity extends AppCompatActivity{
             @Override
             public boolean onQueryTextChange(String newText) {
                 bookName = newText;
-                Log.e("boooooooooookname",bookName);
+                Log.e("boooooooooookname", bookName);
                 return true;
             }
         });
+
+
+        if(!"".equals(bookName)){
+            searchView.setQuery(bookName,false);
+            //searchView.setQueryHint(bookName);
+            getBoos();
+        }
+
 
     }
 
 
     private void getBoos(){
+
+        showLoading();
 
         SearchModel.searchBoos(bookName, page, new Subscriber<List<Boo>>() {
             @Override
@@ -109,7 +126,6 @@ public class SearchActivity extends AppCompatActivity{
                 adapter.notifyDataSetChanged();
             }
         });
-
 
     }
 
@@ -169,7 +185,9 @@ public class SearchActivity extends AppCompatActivity{
     }
 
     private void showLoading(){
-        refreshLayout.setRefreshing(true);
+        Log.e("showLoading","ennnnnnnnnn");
+        refreshLayout.post(()->refreshLayout.setRefreshing(true));
+        //refreshLayout.setRefreshing(true);
         //searchButton.setEnabled(false);
     }
 
@@ -178,5 +196,16 @@ public class SearchActivity extends AppCompatActivity{
         //searchButton.setEnabled(true);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 }

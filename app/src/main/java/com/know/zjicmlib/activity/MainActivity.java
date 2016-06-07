@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.know.zjicmlib.APP;
 import com.know.zjicmlib.R;
 import com.know.zjicmlib.adapter.FViewpagerAdapter;
+import com.know.zjicmlib.fragment.RankFragment;
 import com.know.zjicmlib.fragment.SearchFragment;
 import com.know.zjicmlib.fragment.HomeFragment;
 import com.know.zjicmlib.fragment.YooFragment;
@@ -82,13 +83,13 @@ public class MainActivity extends ToolbarActivity {
 
             Fragment fm = new HomeFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("content","hehe");
+            bundle.putString("content", "hehe");
             fm.setArguments(bundle);
             fragments.add(fm);
 
 
         yooFragment = new YooFragment();
-        fragments.add(new SearchFragment());
+        fragments.add(new RankFragment());
         fragments.add(yooFragment);
 
         FViewpagerAdapter fViewpagerAdapter = new FViewpagerAdapter(getSupportFragmentManager(),
@@ -104,6 +105,7 @@ public class MainActivity extends ToolbarActivity {
             @Override
             public void onPageSelected(int position) {
                 //bottomBar.unHide(true);
+                bottomBar.selectTabAtPosition(position,true);
             }
 
             @Override
@@ -199,14 +201,17 @@ public class MainActivity extends ToolbarActivity {
                 menu.findItem(R.id.action_logout).setVisible(false);
                 menu.findItem(R.id.action_about).setVisible(true);
                 invalidateOptionsMenu();
+                toolbar.setTitle("本馆公告");
                 break;
             case 1:
+                toolbar.setTitle("30天内搜索排行");
                 menu.findItem(R.id.action_search).setVisible(true);
                 menu.findItem(R.id.action_logout).setVisible(false);
                 menu.findItem(R.id.action_about).setVisible(true);
                 invalidateOptionsMenu();
                 break;
             case 2:
+                toolbar.setTitle("个人主页");
                 menu.findItem(R.id.action_search).setVisible(false);
                 menu.findItem(R.id.action_logout).setVisible(true);
                 menu.findItem(R.id.action_about).setVisible(true);
@@ -227,6 +232,7 @@ public class MainActivity extends ToolbarActivity {
                 //APP.mDb.delete(Notice.class);
 
                 Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                intent.putExtra("word","");
                 startActivity(intent);
 
                 break;

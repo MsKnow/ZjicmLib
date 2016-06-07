@@ -242,13 +242,13 @@ public class YooFragment extends Fragment implements YooView{
         loginCard.setVisibility(View.GONE);
         meCard.setVisibility(View.VISIBLE);
         myBooList.setVisibility(View.VISIBLE);
-        myNameText.setTextColor(Color.RED);
+        myNameText.setTextColor(Color.GRAY);
         myNameText.setText(yoo.getNickname());
         myWarning.setText(yoo.getWarning());
     }
     public void onLoginSuccess(){
         cardOnline();
-        myNameText.setTextColor(Color.GREEN);
+        myNameText.setTextColor(Color.WHITE);
     }
     private void onLogout(){
         loginCard.setVisibility(View.VISIBLE);

@@ -2,18 +2,12 @@ package com.know.zjicmlib.retrofit;
 
 import com.know.zjicmlib.modle.bean.Douban;
 
-import java.util.Map;
-
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -25,8 +19,9 @@ public interface LibService {
     @GET("opac/openlink.php?match_flag=forward&displaypg=30")
     Call<ResponseBody> searchBoos(@Query("title")String booN,@Query("page")int page);
 
-    @GET("opac/openlink.php?match_flag=forward&displaypg=30")
-    Observable<ResponseBody> searchBooss(@Query("title")String booN,@Query("page")int page);
+    @GET("opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&doctype=ALL" +
+            "&displaypg=30&showmode=list&sort=CATA_DATE&orderby=desc&dept=ALL")
+    Observable<ResponseBody> searchBooss(@Query("strText")String booN,@Query("page")int page);
 
     @GET("opac/item.php")
     Observable<ResponseBody> getOneBoos(@Query("marc_no")String marc_no);
@@ -49,4 +44,8 @@ public interface LibService {
 
     @GET("http://218.75.124.139:8091/sms/opac/news/showNewsList.action?type=1&xc=4&pageSize=20")
     Observable<ResponseBody> getHome();
+
+    @GET("http://10.2.8.163:8083/opac/top100.php")
+    Observable<ResponseBody> getRank();
+
 }

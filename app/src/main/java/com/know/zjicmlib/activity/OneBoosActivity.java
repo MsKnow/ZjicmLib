@@ -58,8 +58,8 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
     OneBooListAdapter adapter;
 
     private void initPager(){
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -102,7 +102,7 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
         Boo boo = (Boo) getIntent().getSerializableExtra("boo");
         String oneBooStr = boo.getName()+"\n\n"+boo.getAuthor()+"\n\n"+boo.getId();
         booText.setText(oneBooStr);
-        collapsingToolbarLayout.setTitle(boo.getName());/////////
+        //collapsingToolbarLayout.setTitle(boo.getName());/////////
 
 
         Log.e("booCheck", boo.getCheck());//item.php?marc_no=0000467162
