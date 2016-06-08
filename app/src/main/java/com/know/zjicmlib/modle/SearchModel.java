@@ -58,6 +58,7 @@ public class SearchModel  {
 
         if(ol==null){
             System.out.println("没有找到你要的书");
+            throw new RuntimeException();
             //Toast.makeText(getApplicationContext(), "没有找到...", Toast.LENGTH_LONG).show();
 
         }else{

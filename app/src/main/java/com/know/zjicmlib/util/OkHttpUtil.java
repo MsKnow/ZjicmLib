@@ -56,7 +56,7 @@ public class OkHttpUtil {
 
 
                     })
-                    .connectTimeout(15, TimeUnit.SECONDS).build();
+                    .connectTimeout(11, TimeUnit.SECONDS).build();
         }
         return clientt;
     }

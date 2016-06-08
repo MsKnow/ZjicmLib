@@ -157,7 +157,7 @@ public class YooFragment extends Fragment implements YooView{
 
     }
 
-    private void login(boolean click){
+    public void login(boolean click){
         if (click)
         showLoading();
         else showLoading_gray();
@@ -195,10 +195,10 @@ public class YooFragment extends Fragment implements YooView{
 
                 }, throwable -> {
                     throwable.printStackTrace();
-                    System.out.println(throwable.toString());
+                    /*System.out.println(throwable.toString());
                     System.out.println(throwable.getClass().toString());
                     System.out.println(java.lang.NullPointerException.class.toString());
-                    System.out.println(SocketTimeoutException.class.toString());
+                    System.out.println(SocketTimeoutException.class.toString());*/
                     if (throwable instanceof java.lang.NullPointerException) {
                         tip = "人丑就要多读书";
                         myTip.setText(tip);

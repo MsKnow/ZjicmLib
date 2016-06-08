@@ -17,6 +17,7 @@ import com.know.zjicmlib.modle.bean.Boo;
 import com.know.zjicmlib.util.ToastUtil;
 import com.umeng.analytics.MobclickAgent;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +115,17 @@ public class SearchActivity extends AppCompatActivity{
             @Override
             public void onError(Throwable e) {
                 Log.e("onError", e.toString());
-                ToastUtil.tShort("网络错误");
+                if (e instanceof java.net.ConnectException){
+
+                    ToastUtil.tShort("网络错误");
+                }else if(e instanceof RuntimeException){
+
+                    ToastUtil.tShort("找不到呀。。。");
+                }else if (e instanceof SocketTimeoutException) {
+                    System.out.println("超时，请重试");
+                    ToastUtil.tShort("连接超时，请重试 (须校内网)");
+                }
+
                 hideLoading();
             }
 

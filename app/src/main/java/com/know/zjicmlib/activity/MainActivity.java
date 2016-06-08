@@ -39,6 +39,8 @@ public class MainActivity extends ToolbarActivity {
     //@Bind(R.id.bottom_bar)BottomNavigationBar bottomBar;
     BottomBar bottomBar;
     YooFragment yooFragment;
+    HomeFragment fm;
+    RankFragment rankFragment;
 
     @Override
     protected int getContentId() {
@@ -81,7 +83,7 @@ public class MainActivity extends ToolbarActivity {
 
         List<Fragment> fragments = new ArrayList<>();
 
-            Fragment fm = new HomeFragment();
+            fm = new HomeFragment();
             Bundle bundle = new Bundle();
             bundle.putString("content", "hehe");
             fm.setArguments(bundle);
@@ -89,7 +91,8 @@ public class MainActivity extends ToolbarActivity {
 
 
         yooFragment = new YooFragment();
-        fragments.add(new RankFragment());
+        rankFragment = new RankFragment();
+        fragments.add(rankFragment);
         fragments.add(yooFragment);
 
         FViewpagerAdapter fViewpagerAdapter = new FViewpagerAdapter(getSupportFragmentManager(),
@@ -186,7 +189,7 @@ public class MainActivity extends ToolbarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
 
     }
@@ -232,16 +235,33 @@ public class MainActivity extends ToolbarActivity {
                 //APP.mDb.delete(Notice.class);
 
                 Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-                intent.putExtra("word","");
+                intent.putExtra("word", "");
                 startActivity(intent);
-
                 break;
-        }
-        switch (item.getItemId()){
+
             case R.id.action_logout:
                 SharedPreUtil.getSharedPre().edit().clear().commit();
                 yooFragment.logout();
                 break;
+
+            case R.id.action_refresh:
+
+                switch (viewPager.getCurrentItem()){
+
+                    case 0:
+                        fm.getNotices();
+                        break;
+                    case 1:
+                        rankFragment.getRankList();
+                        break;
+                    case 2:
+                        yooFragment.login(true);
+                        break;
+
+                }
+
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);

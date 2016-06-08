@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void getNotices(){
+    public void getNotices(){
 
         ServiceFactory.getService().getHome()
                 .map(model::parseHtml)

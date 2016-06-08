@@ -10,12 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.know.zjicmlib.APP;
 import com.know.zjicmlib.R;
 import com.know.zjicmlib.activity.SearchActivity;
 import com.know.zjicmlib.adapter.RankListAdapter;
 import com.know.zjicmlib.modle.RankModel;
 import com.know.zjicmlib.modle.bean.Ranker;
 import com.know.zjicmlib.retrofit.ServiceFactory;
+import com.litesuits.orm.db.assit.QueryBuilder;
+import com.litesuits.orm.db.model.ConflictAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +58,11 @@ public class RankFragment extends Fragment {
     private void initRankList(){
 
         rankers = new ArrayList<>();
+
+        QueryBuilder query = new QueryBuilder(Ranker.class);
+        rankers.clear();
+        rankers.addAll(APP.mDb.query(query));
+
         rankListAdapter = new RankListAdapter(rankers);
         rankListAdapter.setOnItemClickListener(position -> {
 
@@ -66,14 +74,14 @@ public class RankFragment extends Fragment {
         });
         rankList.setAdapter(rankListAdapter);
 
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3,
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
         rankList.setLayoutManager(layoutManager);
 
     }
 
 
-    private void getRankList(){
+    public void getRankList(){
 
         ServiceFactory.getService().getRank()
                 .map(rankModel::getRankList)
@@ -83,10 +91,17 @@ public class RankFragment extends Fragment {
 
                     rankers.clear();
                     rankers.addAll(rankerss);
+
                     rankListAdapter.notifyDataSetChanged();
+                    saveRank(rankerss);
+                    //APP.mDb.delete(Ranker.class);
 
                 }, Throwable::printStackTrace);
 
+    }
+
+    private void saveRank(List<Ranker> rankers){
+        APP.mDb.insert(rankers, ConflictAlgorithm.Ignore);
     }
 
 }

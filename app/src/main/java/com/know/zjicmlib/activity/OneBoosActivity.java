@@ -47,6 +47,7 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
     @Bind(R.id.img_boo_one)ImageView booImage;
     @Bind(R.id.tv_boo_one)TextView booText;
     TextView summaryText;
+    TextView whereText;
     RecyclerView oneBooList;
 
     @Bind(R.id.vp_one)WrapContentViewPager booPagers;
@@ -67,6 +68,8 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
         View rLayout = LayoutInflater.from(this).inflate(R.layout.layout_list_ones,null);
         summaryText = (TextView) lLayout.findViewById(R.id.tv_summary);
         oneBooList = (RecyclerView) rLayout.findViewById(R.id.list_one_boo);
+        whereText = (TextView) rLayout.findViewById(R.id.tv_boo_one_where);
+
         initList();
         layouts.add(lLayout);
         layouts.add(rLayout);
@@ -103,6 +106,7 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
         String oneBooStr = boo.getName()+"\n\n"+boo.getAuthor()+"\n\n"+boo.getId();
         booText.setText(oneBooStr);
         //collapsingToolbarLayout.setTitle(boo.getName());/////////
+        whereText.setText(getwhere(boo.getId()));
 
 
         Log.e("booCheck", boo.getCheck());//item.php?marc_no=0000467162
@@ -140,7 +144,7 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
 
     @Override
     public void setOneBoos(List<Boo> oneBooss) {
-        Log.e("setOneboos",oneBooss.get(0).getId());
+        Log.e("setOneboos", oneBooss.get(0).getId());
 
         oneBoos.clear();
         oneBoos.addAll(oneBooss);
@@ -157,4 +161,26 @@ public class OneBoosActivity extends ToolbarActivity implements OneBoosView{
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private String getwhere(String id) {
+        // TODO 自动生成的方法存根
+
+        String zm = id.substring(0, 1);
+        System.out.println(zm);
+        if("I".equals(zm)){
+            return "三楼";
+        }else if("G".equals(zm)){
+            return "五楼";
+        }else if("J".equals(zm)||"K".equals(zm)){
+            return "五楼西";
+        }else if("T".equals(zm)){
+            return "六楼";
+        }else if("H".equals(zm)){
+            return "六楼西";
+        }else
+
+            return "七楼";
+    }
+
 }

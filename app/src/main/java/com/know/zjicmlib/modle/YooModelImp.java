@@ -153,7 +153,7 @@ public class YooModelImp implements YooModel{
         System.out.println("stored");
         List<Yoo> yous = APP.mDb.query(Yoo.class);
         for (Yoo yo :yous){
-            System.out.println("查看储存结果"+yo.getPassword());
+            //System.out.println("查看储存结果"+yo.getPassword());
         }
 
         yooView.onLoginSuccess();
