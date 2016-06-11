@@ -39,7 +39,7 @@ public class RankModel {
 
             String rankRaw = blue.text();
 
-            String word = rankRaw.substring(0, rankRaw.indexOf("("));
+            String word = rankRaw.substring(0, rankRaw.indexOf("(")-1);
             String rank = rankRaw.substring(rankRaw.indexOf("(") + 1, rankRaw.indexOf(")"));
             int rankk = Integer.parseInt(rank);
             System.out.println(word + "-------------->" + rank);

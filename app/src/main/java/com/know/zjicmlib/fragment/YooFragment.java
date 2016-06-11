@@ -26,6 +26,7 @@ import com.know.zjicmlib.modle.bean.Boo;
 import com.know.zjicmlib.modle.bean.Yoo;
 import com.know.zjicmlib.retrofit.ServiceFactory;
 import com.know.zjicmlib.util.ToastUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -170,6 +171,8 @@ public class YooFragment extends Fragment implements YooView{
                         yoo = yooo;
                         yoo.setId(id);
                         yoo.setPassword(password);
+
+                        MobclickAgent.onProfileSignIn(yoo.getId()+yoo.getName());
                         //用户名入库
                         yooModel.storeYoo(yoo);
                         APP.online = true;///////////////////放这里
@@ -221,6 +224,7 @@ public class YooFragment extends Fragment implements YooView{
         yoo = null;
         APP.yoo = null;
         APP.online = false;
+        MobclickAgent.onProfileSignOff();
         onLogout();
     }
 

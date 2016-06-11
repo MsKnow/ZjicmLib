@@ -5,8 +5,12 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.know.zjicmlib.APP;
+import com.know.zjicmlib.R;
 import com.know.zjicmlib.modle.bean.Boo;
 
 /**
@@ -31,7 +35,7 @@ public class ViewHolderr extends RecyclerView.ViewHolder {
             view = this.itemView.findViewById(id);
             views.put(id,view);
         }else {
-            Log.e("holder","wei重用");
+            //Log.e("holder","wei重用");
         }
 
         return (T) view;
@@ -54,9 +58,23 @@ public class ViewHolderr extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public ViewHolderr setImageFromNet(int id,String url){
+        ImageView imageView = getView(id);
+        Glide.with(APP.aContext)
+                .load(url)
+                .placeholder(R.drawable.ic_wait_24dp)
+                .into(imageView);
+        return this;
+    }
+
     public Button getButton(int id){
         Button button = getView(id);
         return button;
+    }
+
+    public ImageView getImageView(int id){
+        ImageView imageView = getView(id);
+        return imageView;
     }
 
 }

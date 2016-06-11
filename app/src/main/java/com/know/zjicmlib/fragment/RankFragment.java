@@ -9,7 +9,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.know.zjicmlib.APP;
 import com.know.zjicmlib.R;
 import com.know.zjicmlib.activity.SearchActivity;
@@ -57,8 +59,11 @@ public class RankFragment extends Fragment {
 
     private void initRankList(){
 
-        rankers = new ArrayList<>();
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL);
+        rankList.setLayoutManager(layoutManager);
 
+        rankers = new ArrayList<>();
         QueryBuilder query = new QueryBuilder(Ranker.class);
         rankers.clear();
         rankers.addAll(APP.mDb.query(query));
@@ -72,11 +77,13 @@ public class RankFragment extends Fragment {
             startActivity(intent);
 
         });
+
+
+
         rankList.setAdapter(rankListAdapter);
 
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,
-                StaggeredGridLayoutManager.VERTICAL);
-        rankList.setLayoutManager(layoutManager);
+
+
 
     }
 
