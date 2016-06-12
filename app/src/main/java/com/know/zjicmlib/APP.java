@@ -2,6 +2,8 @@ package com.know.zjicmlib;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 import com.know.zjicmlib.modle.bean.Yoo;
@@ -13,6 +15,7 @@ import java.util.List;
  * Created by know on 2016/4/14.
  */
 public class APP extends Application {
+    public static int Version;
     public static Context aContext;
     public static Yoo yoo;
     public static LiteOrm mDb;
@@ -22,8 +25,9 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
         aContext = this;
-
-        System.out.println("app---------------------------------oncreate");
+        //Version = getPackageManager()
+        //System.out.println("app---------------------------------oncreate");
+        Log.e("version",getVersionCode(aContext)+"--------"+getVersionName(aContext));
         mDb = LiteOrm.newSingleInstance(aContext,"lib.db");
         mDb.setDebugged(false);
         //mDb.delete(Yoo.class);
@@ -72,6 +76,30 @@ public class APP extends Application {
             System.out.println(yoo.getPassword());*/
         }
         return yoo;
+    }
+
+    public static int getVersionCode(Context context) {
+        return getPackageInfo(context).versionCode;
+    }
+
+    public static String getVersionName(Context context) {
+        return getPackageInfo(context).versionName;
+    }
+
+    private static PackageInfo getPackageInfo(Context context) {
+        PackageInfo pi = null;
+
+        try {
+            PackageManager pm = context.getPackageManager();
+            pi = pm.getPackageInfo(context.getPackageName(),
+                    PackageManager.GET_CONFIGURATIONS);
+
+            return pi;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pi;
     }
 
 }

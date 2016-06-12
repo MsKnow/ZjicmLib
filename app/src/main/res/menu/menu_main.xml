@@ -14,7 +14,8 @@
         android:id="@+id/action_search"
         android:title="搜索"
         android:icon="@drawable/ic_search_api_material"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/action_refresh"
         android:title="刷新"

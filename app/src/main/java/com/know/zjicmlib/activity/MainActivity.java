@@ -262,6 +262,11 @@ public class MainActivity extends ToolbarActivity {
 
                 break;
 
+            case R.id.action_about:
+                Intent intent_ab = new Intent(MainActivity.this,AboutActivity.class);
+                startActivity(intent_ab);
+
+
         }
 
         return super.onOptionsItemSelected(item);
