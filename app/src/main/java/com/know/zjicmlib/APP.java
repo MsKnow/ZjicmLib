@@ -27,7 +27,7 @@ public class APP extends Application {
         aContext = this;
         //Version = getPackageManager()
         //System.out.println("app---------------------------------oncreate");
-        Log.e("version",getVersionCode(aContext)+"--------"+getVersionName(aContext));
+        Log.e("version",getVersionCode()+"--------"+getVersionName());
         mDb = LiteOrm.newSingleInstance(aContext,"lib.db");
         mDb.setDebugged(false);
         //mDb.delete(Yoo.class);
@@ -78,12 +78,12 @@ public class APP extends Application {
         return yoo;
     }
 
-    public static int getVersionCode(Context context) {
-        return getPackageInfo(context).versionCode;
+    public static int getVersionCode() {
+        return getPackageInfo(aContext).versionCode;
     }
 
-    public static String getVersionName(Context context) {
-        return getPackageInfo(context).versionName;
+    public static String getVersionName() {
+        return getPackageInfo(aContext).versionName;
     }
 
     private static PackageInfo getPackageInfo(Context context) {

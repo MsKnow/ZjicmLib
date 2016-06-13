@@ -57,7 +57,7 @@
             android:layout_height="50dp"
             app:tabSelectedTextColor="@android:color/white"
             app:tabTextColor="@android:color/black"
-            app:tabIndicatorColor="@android:color/holo_green_light"/>
+            app:tabIndicatorColor="@color/colorYellow"/>
 
     </android.support.design.widget.AppBarLayout>
 

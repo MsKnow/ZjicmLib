@@ -38,6 +38,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -182,7 +183,12 @@ public class YooFragment extends Fragment implements YooView{
                         throw new RuntimeException();
                     }
                 }).observeOn(Schedulers.io())
-                .flatMap(yooo -> ServiceFactory.getService().getMyBoos())
+                .doOnNext(yoo1 -> {
+
+                    ServiceFactory.getService().postMe(APP.getVersionCode(), yoo1.getId(), yoo1.getMajor(),
+                            yoo1.getSex());
+
+                }).flatMap(yooo -> ServiceFactory.getService().getMyBoos())
                 .map(yooModel::parseHtml2)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

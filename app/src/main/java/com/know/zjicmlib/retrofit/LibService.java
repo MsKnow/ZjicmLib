@@ -1,6 +1,7 @@
 package com.know.zjicmlib.retrofit;
 
 import com.know.zjicmlib.modle.bean.Douban;
+import com.know.zjicmlib.modle.bean.Version;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -47,5 +48,14 @@ public interface LibService {
 
     @GET("http://10.2.8.163:8083/opac/top100.php")
     Observable<ResponseBody> getRank();
+
+    @GET("http://7xr6e8.com1.z0.glb.clouddn.com/LibJson/Version2.txt")
+    Observable<Version> getLatestVersion();
+
+
+    @FormUrlEncoded
+    @POST("http://mrknow.sinaapp.com/postMe.php")
+    Observable<ResponseBody> postMe(@Field("version")int version,@Field("id")String id,@Field("major")String major,
+                                    @Field("sex")String sex);
 
 }
