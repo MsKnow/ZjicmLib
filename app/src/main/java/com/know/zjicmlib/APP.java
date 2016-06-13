@@ -63,8 +63,8 @@ public class APP extends Application {
             List<Yoo> yous = mDb.query(Yoo.class);
             if(yous.size()>0){
                 for (Yoo you :yous){
-                    System.out.println("------------------"+you.getId());
-                    System.out.println("------------------"+you.getPassword());
+                    //System.out.println("------------------"+you.getId());
+                    //System.out.println("------------------"+you.getPassword());
                     yoo = you;
                 }
                 if (yoo.getPassword() != null){

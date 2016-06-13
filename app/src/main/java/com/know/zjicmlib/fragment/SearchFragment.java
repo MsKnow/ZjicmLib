@@ -134,7 +134,7 @@ public class SearchFragment extends Fragment{
         searchBooList.setOnScrollListener(getScrollToBottomListener(layoutManager));
     }
     private void initRefresh(){
-        refreshLayout.setColorSchemeColors(R.color.color_refresh_1, R.color.color_refresh_2,
+        refreshLayout.setColorSchemeResources(R.color.color_refresh_1, R.color.color_refresh_2,
                 R.color.color_refresh_3);
         refreshLayout.setOnRefreshListener(()->{
             page = 1;

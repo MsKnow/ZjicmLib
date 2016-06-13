@@ -107,7 +107,7 @@ public class YooFragment extends Fragment implements YooView{
             id = yoo.getId();
             password = yoo.getPassword();
             cardOnline();
-            System.out.println("onlineooooo:::::::"+id+" "+password);
+            //System.out.println("onlineooooo:::::::"+id+" "+password);
             login(false);
         }else {
             onLogout();

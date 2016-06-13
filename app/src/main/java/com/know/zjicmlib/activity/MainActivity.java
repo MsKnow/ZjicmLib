@@ -16,6 +16,7 @@ import com.know.zjicmlib.fragment.SearchFragment;
 import com.know.zjicmlib.fragment.HomeFragment;
 import com.know.zjicmlib.fragment.YooFragment;
 import com.know.zjicmlib.modle.bean.Notice;
+import com.know.zjicmlib.util.Preload;
 import com.know.zjicmlib.util.SharedPreUtil;
 import com.know.zjicmlib.util.ToastUtil;
 import com.roughike.bottombar.BottomBar;
@@ -53,11 +54,12 @@ public class MainActivity extends ToolbarActivity {
 
         if(SharedPreUtil.getSharedPre().getBoolean("once",true)){
 
-            Notice myNotice = new Notice();
+            /*Notice myNotice = new Notice();
             myNotice.setDate("2017-7-7");
             myNotice.setSrc("gank.io");
             myNotice.setTitle("浙传移动图书馆app上线");
-            APP.mDb.insert(myNotice);
+            APP.mDb.insert(myNotice);*/
+            APP.mDb.insert(Preload.getPreNotice());
 
             //copy("home.html","home.html");
             SharedPreUtil.putBool("once",false);
@@ -181,7 +183,7 @@ public class MainActivity extends ToolbarActivity {
 
         bottomBar.mapColorForTab(0, R.color.colorRed);
         bottomBar.mapColorForTab(1,R.color.colorYellow);
-        bottomBar.mapColorForTab(2,R.color.colorBlue);
+        bottomBar.mapColorForTab(2, R.color.colorBlue);
 
 
     }
@@ -203,6 +205,7 @@ public class MainActivity extends ToolbarActivity {
                 menu.findItem(R.id.action_search).setVisible(false);
                 menu.findItem(R.id.action_logout).setVisible(false);
                 menu.findItem(R.id.action_about).setVisible(true);
+                menu.findItem(R.id.action_refresh).setVisible(false);
                 invalidateOptionsMenu();
                 toolbar.setTitle("本馆公告");
                 break;
@@ -211,6 +214,7 @@ public class MainActivity extends ToolbarActivity {
                 menu.findItem(R.id.action_search).setVisible(true);
                 menu.findItem(R.id.action_logout).setVisible(false);
                 menu.findItem(R.id.action_about).setVisible(true);
+                menu.findItem(R.id.action_refresh).setVisible(false);
                 invalidateOptionsMenu();
                 break;
             case 2:
@@ -218,6 +222,7 @@ public class MainActivity extends ToolbarActivity {
                 menu.findItem(R.id.action_search).setVisible(false);
                 menu.findItem(R.id.action_logout).setVisible(true);
                 menu.findItem(R.id.action_about).setVisible(true);
+                menu.findItem(R.id.action_refresh).setVisible(true);
                 invalidateOptionsMenu();
                 break;
 
@@ -294,9 +299,9 @@ public class MainActivity extends ToolbarActivity {
 
             is.close();
             System.out.println(isString);
-            write(isString,filename);
+            write(isString, filename);
 
-            System.out.println("安装 "+asstname+" 完成！" );
+            System.out.println("安装 " + asstname + " 完成！");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

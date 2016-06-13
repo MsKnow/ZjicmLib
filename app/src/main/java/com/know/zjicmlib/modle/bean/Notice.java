@@ -43,4 +43,13 @@ public class Notice {
     public void setSrc(String src) {
         this.src = src;
     }
+
+    @Override
+    public String toString() {
+        return "Notice{" +
+                "title:'" + title + '\'' +
+                ", date:'" + date + '\'' +
+                ", src:'" + src + '\'' +
+                '}';
+    }
 }

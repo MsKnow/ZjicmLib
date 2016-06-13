@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,6 +47,7 @@ public class HomeFragment extends Fragment {
     private View view;
 
     @Bind(R.id.list_notice)RecyclerView noticeList;
+    @Bind(R.id.swipe_search)SwipeRefreshLayout refreshLayout;
     //@Bind(R.id.web_home)WebView webView;
 
     List<Notice> notices = new ArrayList<>();
@@ -59,9 +61,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home,container,false);
         ButterKnife.bind(this, view);
-
         model = new NoticesModel();
-
         /*webView.canGoBack();
         webView.setWebViewClient(new WebViewClient(){
             @Override
@@ -71,11 +71,9 @@ public class HomeFragment extends Fragment {
         });
         url = "file://"+getActivity().getFilesDir().getPath()+"/home.html";
         webView.loadUrl(url);*/
-
         //notices.add(myNotice);
-
         initNoticeList();
-
+        initRefresh();
         getNotices();
 
         return view;
@@ -106,22 +104,35 @@ public class HomeFragment extends Fragment {
 
     public void getNotices(){
 
+        refreshLayout.setRefreshing(true);
+
         ServiceFactory.getService().getHome()
                 .map(model::parseHtml)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        notices1 ->{
+                        notices1 -> {
                             notices.clear();
                             notices.addAll(notices1);
                             saveNotices(notices1);
                             adapter.notifyDataSetChanged();
-                        }, Throwable::printStackTrace
+                            refreshLayout.setRefreshing(false);
+                        }, Throwable->{
+                            Throwable.printStackTrace();
+                            refreshLayout.setRefreshing(false);
+                        }
                 );
 
     }
 
+    private void initRefresh() {
+        refreshLayout.setColorSchemeResources(R.color.color_refresh_1, R.color.color_refresh_2,
+                R.color.color_refresh_3);
+        refreshLayout.setOnRefreshListener(this::getNotices);
+    }
+
     private void saveNotices(List<Notice> notices){
+        APP.mDb.delete(Notice.class);
         APP.mDb.insert(notices, ConflictAlgorithm.Ignore);
     }
 

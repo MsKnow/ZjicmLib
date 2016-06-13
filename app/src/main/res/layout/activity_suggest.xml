@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/view_toolbar"/>
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        >
+        <EditText
+            android:id="@+id/et_sug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="11dp"
+            android:textSize="14sp"
+            android:hint="输入建议 50字以内 非常感谢！"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            />
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/bt_sug"
+        android:layout_gravity="end"
+        android:layout_margin="12dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="提交"/>
+
+</LinearLayout>

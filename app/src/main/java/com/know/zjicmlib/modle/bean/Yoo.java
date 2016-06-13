@@ -11,7 +11,7 @@ import com.litesuits.orm.db.enums.AssignType;
 public class Yoo {
 
     @PrimaryKey(AssignType.BY_MYSELF)
-    @Column("id")String id;
+    @Column("id")String id="000000000";
     String password;
     @Column("name")String name;
     @Column("nickname")String nickname;

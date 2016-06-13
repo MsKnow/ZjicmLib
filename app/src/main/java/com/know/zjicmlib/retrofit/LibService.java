@@ -50,12 +50,15 @@ public interface LibService {
     Observable<ResponseBody> getRank();
 
     @GET("http://7xr6e8.com1.z0.glb.clouddn.com/LibJson/Version2.txt")
-    Observable<Version> getLatestVersion();
+    Observable<Version> getLatestVersion(@Query("time")Long time);
 
 
     @FormUrlEncoded
     @POST("http://mrknow.sinaapp.com/postMe.php")
     Observable<ResponseBody> postMe(@Field("version")int version,@Field("id")String id,@Field("major")String major,
                                     @Field("sex")String sex);
+    @FormUrlEncoded
+    @POST("http://mrknow.sinaapp.com/myapp/sugg.php")
+    Observable<ResponseBody> postSug(@Field("id")String id,@Field("sug")String sug);
 
 }
